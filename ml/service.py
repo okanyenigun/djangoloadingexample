@@ -4,7 +4,6 @@ from sklearn.linear_model import Lasso
 from sklearn.metrics import mean_squared_error
 from math import sqrt
 
-
 class Regression:
     
     def __init__(self):
@@ -14,9 +13,11 @@ class Regression:
         self.rmse = self._run_model(X,y)
         
     def get_rmse(self):
+        """returns root mean square"""
         return self.rmse
 
     def _generate_dataset(self):
+        """generates dummy dataset using sklearn method"""
         X,y = datasets.make_regression(n_samples=1000000,#number of samples
                                       n_features=15,#number of features
                                       n_informative=10,#number of useful features 
@@ -25,6 +26,7 @@ class Regression:
         return X,y
 
     def _run_model(self,X,y):
+        """lasso model is tuned by gridsearch, returns root mean square of best models"""
         X_train, X_test, y_train, y_test = train_test_split(X,y,test_size=0.3)
         model = Lasso()
         param_grid = {

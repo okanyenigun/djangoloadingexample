@@ -10,7 +10,6 @@ class MainView(View):
     
     def get(self,request):
         if "submit" in request.GET:
-            print("here")
             return redirect("result")
         return render(request,'./templates/index.html')
 
@@ -18,7 +17,6 @@ class MainView(View):
 class ResultView(View):
     
     def get(self,request):
-        print("isndei")
         return render(request,'./templates/results.html')
 
     
