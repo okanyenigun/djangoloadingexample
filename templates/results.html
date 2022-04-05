@@ -1,0 +1,25 @@
+{% extends 'base.html' %} {% load static%} {% block content %}
+
+<div class="content" id="result-content" style="display: none;">
+<label id="run-time">Run time: </label>
+<label id="accuracy">Root Mean Square Error: </label>
+</div>
+<div class="loading-bar-area" id="loading-bar-area">
+    {% include 'loading.html' %}
+</div>
+
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $.ajax({
+            url: "/loading/",
+        }).done(function(data){
+            $('#loading-bar-area').remove();
+            $('#run-time').append(data["time"].toFixed(2) + ' seconds')
+            $('#accuracy').append(data["rmse"].toFixed(2))
+            $('#result-content').show();
+        });
+    });
+</script>
+
+{% endblock %}
